@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 
+import { toast } from "react-toastify";
+
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
@@ -11,7 +13,7 @@ import api from "../../services/api";
 
 import logo from "../../assets/logo.svg";
 
-import { Container, Content, ExplainationText, Response } from "./styles";
+import { Container, Content, ExplainationText, Response, Link } from "./styles";
 
 const schema = Yup.object().shape({
   linkProduct: Yup.string().required("O link do endereço é obrigatório"),
@@ -20,7 +22,6 @@ const schema = Yup.object().shape({
 
 export default function FormPage() {
   const [responseApi, setResponseApi] = useState(null);
-  const [errorApi, setErrorApi] = useState(null);
 
   async function handleSubmit({ linkProduct, question }) {
     try {
@@ -33,8 +34,7 @@ export default function FormPage() {
 
       setResponseApi(response.data);
     } catch (err) {
-      console.log(err.response.data);
-      console.log(err.response.status);
+      toast.error("Ocorreu um erro", err.response.data);
     }
   }
 
@@ -42,8 +42,7 @@ export default function FormPage() {
     <Container>
       <Content>
         <img src={logo} alt="Hermes" />
-
-        <ExplainationText></ExplainationText>
+        <ExplainationText>Experimente como o Hermes funciona!</ExplainationText>
 
         <Form schema={schema} onSubmit={handleSubmit}>
           <Input
@@ -59,6 +58,11 @@ export default function FormPage() {
           />
 
           <button type="submit">Testar</button>
+
+          <Link>
+            Não conhece o Hermes?{" "}
+            <a href="https://adrianoapj.github.io/hermes/">Clique aqui</a>
+          </Link>
         </Form>
       </Content>
       {responseApi && (

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { darken } from "polished";
 
+import "react-toastify/dist/ReactToastify.css";
+
 export const Container = styled.div`
   min-height: 100%;
   height: auto;
@@ -26,8 +28,8 @@ export const Content = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     margin-right: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     margin-left: 10px;
   }
@@ -54,12 +56,25 @@ export const Content = styled.div`
 export const Response = styled.div`
   width: 100%;
   max-width: 400px;
-  padding: 30px;
+  padding: 20px;
 `;
 
 export const ExplainationText = styled.p`
   margin-top: 10px;
-  text-align: justify;
+  text-align: center;
   color: #2a2951;
   font-weight: bold;
+`;
+
+export const Link = styled.p`
+  padding: 20px 0;
+  color: #2a2951;
+
+  a {
+    color: #68e1fd;
+    text-decoration: none;
+    &:hover {
+      color: ${darken(0.06, "#68E1FD")};
+    }
+  }
 `;
