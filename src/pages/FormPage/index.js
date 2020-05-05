@@ -26,6 +26,7 @@ import {
   Response,
   Link,
   Header,
+  SyntaxContainer,
   CloseButton,
 } from "./styles";
 
@@ -101,7 +102,7 @@ export default function FormPage() {
   }
 
   const options = [
-    { id: "user", title: "Eu sou usuario" },
+    { id: "user", title: "Eu sou consumidor" },
     { id: "developer", title: "Eu sou desenvolvedor" },
   ];
 
@@ -170,9 +171,31 @@ export default function FormPage() {
           <Response>
             {userInfo === "developer" ? (
               <>
-                <SyntaxHighlighter language="json" style={dracula}>
-                  {JSON.stringify(responseApi, null, 2)}
-                </SyntaxHighlighter>
+                {visibleBackground === true ? (
+                  <Background>
+                    <ModalContainer>
+                      <Header>
+                        <img src={logo} alt="Hermes" />
+                        <CloseButton
+                          type="button"
+                          onClick={() => {
+                            setVisibleBackground(false);
+                            setResponseApi(null);
+                          }}
+                        >
+                          <MdClose size={20} color="#333" />
+                        </CloseButton>
+                      </Header>
+                      <SyntaxContainer>
+                        <SyntaxHighlighter language="json" style={dracula}>
+                          {JSON.stringify(responseApi, null, 2)}
+                        </SyntaxHighlighter>
+                      </SyntaxContainer>
+                    </ModalContainer>
+                  </Background>
+                ) : (
+                  <> </>
+                )}
               </>
             ) : (
               <>

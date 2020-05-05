@@ -181,3 +181,7 @@ export const CloseButton = styled.button`
 
   cursor: pointer;
 `;
+
+export const SyntaxContainer = styled.div`
+  width: 60vw;
+`;
