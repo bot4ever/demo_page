@@ -5,7 +5,7 @@ export const Container = styled.div`
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    text-align: start;
+    text-align: center;
   }
 
   input {
@@ -15,7 +15,7 @@ export const Container = styled.div`
     border-radius: 4px;
     height: 44px;
     padding: 0 15px;
-    color: #999999;
+    color: #333;
     margin: 0 0 10px;
 
     border: 2px solid #ddd;
